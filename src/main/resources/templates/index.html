@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Car dealer: Hugh Honest</title>
+</head>
+<body>
+<h1>Welcome to honest Hugh!</h1>
+<div class="indexPage">
+<img th:src="@{/images/honesth.jpg}"></img>
+<p>Your satisfaction is my priority!</p>
+<a th:href="${'/admin'}">Admin Login</a>
+<a th:href="${'/browse'}">Browse cars</a>
+</div>
+</body>
+</html>
