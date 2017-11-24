@@ -34,17 +34,28 @@ public class CarController {
 	public String editCar(@PathVariable Long id, Model model){
 		model.addAttribute(carRepo.findOne(id));
 		
-		return "admin";
+		return "/edit";
 	}
 	
 	@RequestMapping(value = "admin/delete/{id}")
 	public String deleteCar(@PathVariable Long id) {
 		carRepo.delete(id);
 		
-		System.out.println("HEJ!");
-		
 		return "index";
 	}
+	@RequestMapping("admin/add")
+	public String addCar(Model model) {
+		Car car = new Car();
+		model.addAttribute("car", car);
+		return "/edit";
+	}
+	
+	//called from html form in edit.html
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String saveProduct(Car car){
+        carRepo.save(car);
+        return "redirect:/admin";
+    }
 	
 	@RequestMapping("/login")
 	public String loginPage() {
@@ -57,7 +68,7 @@ public class CarController {
 		if(allCars != null)
 			model.addAttribute("allCars", allCars);
 		
-		return "/browse"; //redirect:
+		return "/browse";
 	}
 
 }

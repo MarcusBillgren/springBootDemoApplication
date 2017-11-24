@@ -4,6 +4,42 @@
 <title>Edit the car here</title>
 </head>
 <body>
-
+ <div>
+        <form class="registration-form-car" th:object="${car}" th:action="@{/edit}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="desc-group">
+                <label class="desc_lbl">Description:</label>
+                <div class="desc">
+                    <input type="text" class="form-control" th:field="*{description}"/>
+                </div>
+            </div>
+            <div class="price-group">
+                <label class="price_lbl">Price:</label>
+                <div class="price">
+                    <input type="text" class="form-control" th:field="*{price}"/>
+                </div>
+            </div>
+            <div class="url-group">
+                <label class="url_lbl">Image Url:</label>
+                <div class="url">
+                    <input type="text" class="form-control" th:field="*{imgUrl}"/>
+                </div>
+            </div>
+                        <div class="brand-group">
+                <label class="brand_lbl">Brand</label>
+                <div class="brand">
+                    <select id="brandselect" class="form-brand-control" th:field="*{brand}">
+						<option value="" selected="selected">Selection</option>
+						<option th:each="brand : ${T(com.mb.projektarbete.cardealership.cars.Brand).values()}" 
+						th:value="${brand}" th:text="${brand}">Brand</option>
+					</select>
+                </div>
+            </div>
+            <div class="submit_car">
+            	<p>-----------------------------------------------</p>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+            </form>
+</div>
 </body>
 </html>

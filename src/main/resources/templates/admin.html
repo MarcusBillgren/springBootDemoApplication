@@ -4,9 +4,9 @@
 <title>Admin page</title>
 </head>
 <body>
-<h1>YEY!</h1>
+<h1>Welcome admin!</h1>
 <h2>
-<div><a th:href="${'/addCar'}">Add a new car</a></div>
+<div><a th:href="${'/admin/add'}">Add a new car</a></div>
 <form th:action="@{/logout}" method="post">
 <input type="submit" value="Sign Out"/>
 </form>
