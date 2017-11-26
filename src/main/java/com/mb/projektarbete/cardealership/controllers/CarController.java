@@ -41,7 +41,7 @@ public class CarController {
 	public String deleteCar(@PathVariable Long id) {
 		carRepo.delete(id);
 		
-		return "index";
+		return "redirect:/admin";
 	}
 	@RequestMapping("admin/add")
 	public String addCar(Model model) {

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.mb.projektarbete.cardealership.cars.Brand;
 import com.mb.projektarbete.cardealership.cars.Car;
+import com.mb.projektarbete.cardealership.config.Administrator;
+import com.mb.projektarbete.cardealership.repositories.AdminRepo;
 import com.mb.projektarbete.cardealership.repositories.CarRepo;
 
 //Populates database with some values(cars) at application startup!
@@ -15,12 +17,18 @@ import com.mb.projektarbete.cardealership.repositories.CarRepo;
 public class PopulateDatabase implements ApplicationListener<ContextRefreshedEvent>{
 
 	private CarRepo carRepo;
+	private AdminRepo adminRepo;
 	
 	private Logger log = Logger.getLogger(PopulateDatabase.class);
 	
 	@Autowired
 	public void setCarRepo(CarRepo carRepo) {
 		this.carRepo = carRepo;
+	}
+	
+	@Autowired
+	public void setAdminRepo(AdminRepo adminRepo) {
+		this.adminRepo = adminRepo;
 	}
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -42,6 +50,11 @@ public class PopulateDatabase implements ApplicationListener<ContextRefreshedEve
 		carRepo.save(golf);
 
 		log.info("Saved Golf with id: " + golf.getId());
+		
+		Administrator admin1 = new Administrator("sammy", "test");
+		adminRepo.save(admin1);
+		log.info("Skapat admin med namn: " + admin1.getUsername() + " och lösenord: " + admin1.getPassword());
+		
 	}
 
 }
