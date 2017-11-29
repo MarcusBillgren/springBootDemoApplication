@@ -1,5 +1,7 @@
 package com.mb.projektarbete.cardealership.config;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -11,7 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Administrator implements UserDetails{
+public class Administrator implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -28,17 +30,19 @@ public class Administrator implements UserDetails{
 		this.password = password;
 	}
 	
+	//Not used in this application
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
-		//Grant "ADMIN" privilages
-		return Arrays.asList(new SimpleGrantedAuthority("ADMIN"));
+		return null;
 	}
+	
 	@Override
 	public String getPassword() {
 		
 		return password;
 	}
+	
 	@Override
 	public String getUsername() {
 		
@@ -52,22 +56,27 @@ public class Administrator implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		
 		return true;
 	}
+	
 	@Override
 	public boolean isAccountNonLocked() {
 		
 		return true;
 	}
+	
 	@Override
 	public boolean isCredentialsNonExpired() {
 		
 		return true;
 	}
+	
 	@Override
+	
 	public boolean isEnabled() {
 		
 		return true;

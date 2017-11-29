@@ -6,29 +6,31 @@
 <body>
 <h1>Welcome admin!</h1>
 <h2>
-<div><a th:href="${'/admin/add'}">Add a new car</a></div>
-<form th:action="@{/logout}" method="post">
-<input type="submit" value="Sign Out"/>
-</form>
+	<div>
+		<a th:href="${'/admin/add'}">Add a new car</a>
+	</div>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out"/>
+	</form>
 </h2>
-<div th:unless="${#lists.isEmpty(allCars)}">
-<p>These are you current cars for sale:</p>
-<dl th:each="car : ${allCars}">
-<dt class="carDisplay">
-<img th:src="${car.imgUrl}"></img>
-<span th:text="${car.brand}">Brand</span>
-<span th:text="${car.price}">Price</span> euros
-<a th:href="${'admin/edit/' + car.id}">Edit</a>
-<a th:href="${'admin/delete/' + car.id}">Delete</a>
-</dt>
-<dd class="carDescription">
-<span th:if="${car.description}"
-th:text="${car.description}">Description</span>
-<span th:if="${car.description eq null}">
-No description available</span>
-</dd>
-</dl>
-</div>
-<!-- <div><a th:href="${'/'}">Home</a></div> -->
+	<div th:unless="${#lists.isEmpty(allCars)}">
+		<p>These are you current cars for sale:</p>
+	<dl th:each="car : ${allCars}">
+		<dt class="carDisplay">
+			<img th:src="${car.imgUrl}"></img>
+			<span th:text="${car.brand}">Brand</span>
+			<span th:text="${car.price}">Price</span> euros
+			<a th:href="${'admin/edit/' + car.id}">Edit</a>
+			<a th:href="${'admin/delete/' + car.id}">Delete</a>
+		</dt>
+			<dd class="carDescription">
+				<span th:if="${car.description}"
+				th:text="${car.description}">Description</span>
+				<span th:if="${car.description eq null}">
+				No description available
+				</span>
+			</dd>
+		</dl>
+	</div>
 </body>
 </html>

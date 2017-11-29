@@ -30,7 +30,8 @@ public class PopulateDatabase implements ApplicationListener<ContextRefreshedEve
 	public void setAdminRepo(AdminRepo adminRepo) {
 		this.adminRepo = adminRepo;
 	}
-	@Override
+	
+	@Override //populate database with some cars and user on startup
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
 		Car charger = new Car();
@@ -40,7 +41,6 @@ public class PopulateDatabase implements ApplicationListener<ContextRefreshedEve
 		charger.setImgUrl("/images/charger.png");
 		carRepo.save(charger);
 		
-		log.info("Saved Charger with id: " + charger.getId());
 		
 		Car golf = new Car();
 		golf.setBrand(Brand.VOLKSWAGEN);
@@ -48,8 +48,6 @@ public class PopulateDatabase implements ApplicationListener<ContextRefreshedEve
 		golf.setPrice(50000);
 		golf.setImgUrl("/images/golf.jpg");
 		carRepo.save(golf);
-
-		log.info("Saved Golf with id: " + golf.getId());
 		
 		Administrator admin1 = new Administrator("sammy", "test");
 		adminRepo.save(admin1);
